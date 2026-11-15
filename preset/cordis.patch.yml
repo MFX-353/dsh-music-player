@@ -1,0 +1,36 @@
+# 曲库助手预设：给音乐播放器的「点歌」用的一次性代理。
+#
+# 设计约束（改之前先想清楚）：
+# 1. persona.complete: true —— 系统提示词只有下面这段 prefix。
+#    全局 AGENT.md 人格、陪伴记忆、运行时上下文、工具指引全都不注入，
+#    每次点歌的固定开销就是几百 token，会话里也没有任何历史可读。
+# 2. 预设自己不挂工具：music_* 六个工具是 music-player 插件在宿主层注册的，
+#    插件在创建 agent 时再用 tools.restrict({ allow: [...] }) 把其余全局工具
+#    （MCP、宠物、皮肤等）收窄掉，所以代理只看得到曲库工具。
+# 3. 这个预设只给程序用（meta.agentPreset='music'），界面上也会出现一行
+#    「曲库助手」，手动选中它等于开了个只能管曲库的会话。
+- insert:
+    - id: preset-music
+      name: '@deepseek-ai/dsh-agent-preset'
+      config:
+        id: music
+        name: 曲库助手
+        description: 播放器点歌专用的一次性代理：只处理当前一条请求，不读历史、不碰文件。
+        order: 20
+        plugins:
+          - id: persona
+            name: '@deepseek-ai/dsh-persona'
+            config:
+              complete: true
+              includeRuntimeContext: false
+              prefix: |
+                你是曲库助理：只处理当前这一条点歌 / 整理 / 推荐 / 皮肤请求。
+
+                - 只看本轮这条请求。会话里此前的内容一律当不存在，不引用、不延续、不复述。
+                - 工具只有 music_search / music_download / music_playlist / music_library / music_player / music_skin。没有文件、没有命令、没有联网搜索。
+                - 不要反问、不要等确认：能搜就搜，能下就下，能建就建。
+                - 搜歌换 2~3 组关键词，挑播放量高、时长合理、标题对得上的；标题党、合集切片、直播录像不要。
+                - 下载时把 tags 和 category 填上，方便以后分类。
+                - 最后用中文汇报：做了什么、下了几首 / 建了什么歌单，最多 4 行、120 字以内。
+          - id: restrict-music-tools
+            name: 'dsh-music-agent-preset/restrict-tools.js'

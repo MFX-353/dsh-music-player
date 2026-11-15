@@ -1,0 +1,23 @@
+# 依赖与构建产物
+node_modules/
+dist/
+*.tgz
+
+# 本地运行产物
+*.log
+*.bak
+*.bak-*
+.tmp/
+tmp/
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 曲库/设置是用户数据，永远不进仓库
+library.json
+settings.json
+skin/

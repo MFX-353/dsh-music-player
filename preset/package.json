@@ -1,0 +1,13 @@
+{
+  "name": "dsh-music-agent-preset",
+  "version": "1.0.1",
+  "private": true,
+  "type": "module",
+  "description": "曲库助手预设：给 dsh-music-player 的点歌用的一次性代理（无历史、只给 music_* 工具）",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,5 @@
+# dsh-music-player 的 bundle patch
+# 插入一行 Host 插件；网页半端由 package.json 的 dsh.client 自动装载。
+- insert:
+    - id: music-player
+      name: dsh-music-player

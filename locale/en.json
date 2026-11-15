@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "Desktop music and video player",
+    "description": "A resident mini bar plus a floating panel: local library, playlists with batch organizing, Bilibili search, and an \"ask the model\" field that reasons before it searches. Downloads reuse the installed JiJiDown ffmpeg to produce mp3, and merge Bilibili DASH streams into mp4. Audio and video, a draggable video window, custom shortcuts, and skins.",
+    "detail": "docs/DETAIL.md"
+  }
+}

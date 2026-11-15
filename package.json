@@ -1,0 +1,57 @@
+{
+  "name": "dsh-music-player",
+  "version": "2.6.0",
+  "private": true,
+  "description": "桌面端顶栏与悬浮面板的音乐/视频播放器：本地曲库、歌单、批量整理、B 站搜索、模型点歌；下载走唧唧DOWN 自带的 ffmpeg，后台转 mp3 / 合并 mp4。",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "lib",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "docs",
+    "icon.svg",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "preset"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    }
+  },
+  "license": "MIT",
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "music-player",
+    "bilibili",
+    "electron"
+  ],
+  "author": "MFX-353",
+  "bugs": {
+    "url": "https://github.com/MFX-353/dsh-music-player/issues"
+  },
+  "homepage": "https://github.com/MFX-353/dsh-music-player#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MFX-353/dsh-music-player.git"
+  }
+}
