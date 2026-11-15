@@ -13,7 +13,7 @@ DSH 桌面端的音乐 + 视频播放器插件：顶栏常驻迷你条、悬浮�
 
 ```bash
 # 1) 拿到仓库
-git clone https://github.com/<owner>/dsh-music-player.git
+git clone https://github.com/MFX-353/dsh-music-player.git
 cd dsh-music-player
 
 # 2) 装进当前 DSH profile（也可以直接在「插件 → 添加插件」里选这个目录）
