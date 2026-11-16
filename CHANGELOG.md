@@ -1,5 +1,8 @@
 # 更新日志
 
+## 2.6.1
+
+- 修复 `music_library list` / `music_download` / `music_playlist detail` 返回两首以上时抛 `playlistMap.get is not a function`（2.5.0 给 `publicTrack` 加第二参数后，`Array.map(publicTrack)` 把数组下标当成歌单映射传了进去；下标 0 会走兜底所以只崩「多首」）。
 ## 2.6.0
 
 - **媒体源**：整段读成 blob 的阈值改成 `settings.blobMaxMB`（默认 256），Chromium 的大 blob 会落盘，绝大多数 1080p 视频拖动可用；超过阈值才退回 HTTP 流式，并且面板会显示「流式 · 可能拖不准」。

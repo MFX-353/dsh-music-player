@@ -1,6 +1,6 @@
 {
   "name": "dsh-music-player",
-  "version": "2.6.0",
+  "version": "2.6.1",
   "private": true,
   "description": "桌面端顶栏与悬浮面板的音乐/视频播放器：本地曲库、歌单、批量整理、B 站搜索、模型点歌；下载走唧唧DOWN 自带的 ffmpeg，后台转 mp3 / 合并 mp4。",
   "type": "module",

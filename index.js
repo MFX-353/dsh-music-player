@@ -711,7 +711,7 @@ export function apply(ctx, config) {
         const added = await scanAll()
         if (dirs.length) added.push(...await store.scanDirs(dirs, { source: 'manual' }))
         await store.save()
-        sendJson(res, 200, { ok: true, added: added.map(publicTrack), total: store.list().length })
+        sendJson(res, 200, { ok: true, added: added.map(track => publicTrack(track)), total: store.list().length })
         return
       }
       if (pathname === ROUTE + '/api/search') {
@@ -1059,7 +1059,7 @@ export function apply(ctx, config) {
           return {
             ok: true,
             playlist: { id: playlist.id, name: playlist.name, count: playlist.trackIds.length },
-            tracks: playlist.trackIds.map(id => store.get(id)).filter(Boolean).map(publicTrack),
+            tracks: playlist.trackIds.map(id => store.get(id)).filter(Boolean).map(track => publicTrack(track)),
           }
         }
         if (action === 'of') {
@@ -1115,7 +1115,7 @@ export function apply(ctx, config) {
         if (action === 'scan') {
           const added = await scanAll()
           await store.save()
-          return { ok: true, added: added.map(publicTrack), counts: { total: store.list().length } }
+          return { ok: true, added: added.map(track => publicTrack(track)), counts: { total: store.list().length } }
         }
         if (action === 'stats') {
           const tracks = store.list()
@@ -1171,7 +1171,7 @@ export function apply(ctx, config) {
         }
         return {
           ok: true,
-          tracks: tracks.slice(0, limit).map(publicTrack),
+          tracks: tracks.slice(0, limit).map(track => publicTrack(track)),
           counts: { matched: tracks.length, total: store.list().length, playlists: store.playlists.length },
         }
       },
